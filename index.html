@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>E-Commerce App</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
+  <!-- ****Font Awesome Link**** -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body onload="getData()">
+  <header class="header">
+    <a class="visually-hidden-focusable" name="top" href="#content"></a>
+    <nav class="navbar navbar-expand-lg " id="nav">
+      <div class="container-fluid">
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+          <img src="images/logo.png" alt="Logo" width="80px" height="80px" class="d-inline-block align-text-top" /></a>
+
+        <!-- Navbar Toggler for mobile -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon" style=" background-color: rgb(245, 170, 73);"></span>
+        </button>
+
+        <!-- Navbar items -->
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <!-- Home -->
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Home</a>
+            </li>
+            <!-- Products -->
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#" onclick="fetchproducts()">Products</a>
+            </li>
+            <!-- Categories with Dropdown -->
+            <li class="nav-item dropdown">
+              <!-- <label class="input-group-text" for="inputGroupSelect01">Categories</label>
+               -->
+              <select class="custom-select" id="inputGroupSelect01" onchange="selectOption()" style="margin-top: 12px;">
+                <!-- <li><a class="dropdown-item" href="#">Smartphones</a></li> -->
+                <option selected="selected" class="dropdown-item" value="choose...">Categories</option>
+
+              </select>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Search and Cart buttons -->
+        <form class="d-flex">
+          <input class="form-control me-2" id="searchInput" type="search" placeholder="Search" aria-label="Search" />
+          <button class="btn" id="btn-search" type="submit">Search</button>
+          <!-- *****CART****** -->
+
+          <button class="btn  ms-2 " id="cart-btn" type="button">
+            <i class="fa fa-shopping-cart" style='font-size:22px'>Cart</i>
+          </button>
+
+        </form>
+      </div>
+    </nav>
+
+
+    <div class="shopping-cart">
+      <div class="box">
+        <!-- <i class="fa fa-trash"></i> -->
+        <!-- <img src="" alt="product"> -->
+        <div class="content">
+          <!-- <h3>product name 1</h3>
+          <span class="price">$4.99/-</span>
+          <span class="quantity">Qty : 1</span> -->
+        </div>
+      </div>
+
+
+      <!-- <div class="total">total : $10:00/-</div> -->
+      <a href="" class="btn">Checkout</a>
+    </div>
+  </header>
+  <!-- Home Section -->
+  <!--------------->
+  <div class="content">
+
+    <div class="container-fluid" id="carousel1" style="padding: 0;">
+      <div class="row"> <!-- carausel Section -->
+        <div class="col" style="padding-left: 0;">
+          <div id="pCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <div class="row ">
+                  <div class="col">
+                    <!-- <div class="card"> -->
+                    <img src="images/banner1.jpg" id="bannerImg" alt="Project 1">
+
+                    <div class="cityshopText">
+                      <img src="images/cityShop text.png" style="width: 200px;height: 160px;" alt="">
+
+                      <ul class="social-icons" id="socialaLink">
+                        <li> <a class="	fa fa-facebook " style='font-size:24px' href=""></a></li>
+                        <li> <a class="fa fa-instagram" style='font-size:24px' href=""></a></li>
+                      </ul>
+
+                    </div>
+
+                    <!-- </div> -->
+                  </div>
+
+                </div>
+              </div>
+              <div class="carousel-item">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                  <div class="col">
+                    <div class="card">
+                      <img src="images/card1.jpg" class="card-img-top" alt="Project 4">
+
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card">
+                      <img src="images/card2.jpg" class="card-img-top" alt="Project 5">
+
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="card">
+                      <img src="images/card1.jpg" class="card-img-top" alt="Project 6">
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#pCarousel" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#pCarousel" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-horizontal " id="list1"
+          style="width: 80%;margin-left: 10%;margin-top: 30px;display: flex; flex-wrap: wrap; align-items: center;">
+        </ul>
+      </div>
+    </div>
+-->
+      <div class="row">
+        <div class="col">
+          <div id="carouselExampleControlsNoTouching" class="carousel slide carousel-dark " data-bs-touch="false"
+            data-bs-interval="false">
+            <div class="carousel-inner" id="carousel2">
+              <!-- ------carousel content-------- -->
+            </div>
+            <button class="carousel-control-prev" type="button" style="height:200px;"
+              data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" style="height: 200px;"
+              data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Products Section -->
+    <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-horizontal " id="list1">
+        </ul>
+      </div>
+    </div>
+
+    <!-- Catrgories Section -->
+    <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-horizontal " id="categoryProduct">
+        </ul>
+      </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="row">
+      <div class="col">
+        <ul class="list-group list-group-horizontal " id="SerachProduct">
+        </ul>
+      </div>
+    </div>
+
+
+
+  </div>
+
+
+
+
+
+
+  <!-- Products Section -->
+
+  <!-- Your website content goes here -->
+
+  <!-- Footer Section -->
+  <footer class="footer navbar-fixed-bottom">
+    <div class="container-fluid text-center ">
+      <div class="row">
+        <div class="col-12 " id="backToTop">
+          <!-- Add any additional footer content or links here -->
+          <a href="#top">Back to Top</a>
+        </div>
+      </div>
+      <div class="row  ">
+
+
+        <!-- --------------UTKARSH CODE--------------------- -->
+        <div class="col-6 my-5">
+          <div class="col-6 text-white">
+            <ul class="list-unstyled">
+              <li><a href="" style="color: white;">Products</a></li>
+              <li><a href="" style="color: white;">Benefits</a></li>
+              <li><a href="" style="color: white;">Partners</a></li>
+              <li><a href="" style="color: white;">Team</a></li>
+            </ul>
+          </div>
+          <div class="col-6 text-white ">
+            <ul class="list-unstyled ">
+              <li><a href="" style="color: white;">Documentation</a></li>
+              <li><a href="" style="color: white;">Support</a></li>
+              <li><a href="" style="color: white;">Legal Terms</a></li>
+              <li><a href="" style="color: white;">About</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md my-5">
+          <div >
+            <ul class="nav" >
+              <li class="nav-item "><a href="" class="nav-link pl-0"><i class="fa fa-facebook fa-lg text-white"></i></a>
+              </li>
+              <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-twitter fa-lg text-white"></i></a></li>
+              <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-github fa-lg text-white"></i></a></li>
+              <li class="nav-item"><a href="" class="nav-link"><i class="fa fa-instagram fa-lg text-white"></i></a></li>
+            </ul>
+          </div>
+          <br>
+          <div class="col-md text-white" style="margin-left: 30%;">
+               <h5 >Need Help?</h5>
+            <hr>
+          </div>
+          <div class="col-md-5 text-white " style="margin-left: 20%;">
+            <form>
+              <fieldset class="form-group">
+                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+              </fieldset><br>
+              <fieldset class="form-group">
+                <textarea class="form-control" id="exampleMessage" placeholder="Message"></textarea>
+              </fieldset>
+              <fieldset class="form-group text-xs-right" style="margin-left: 10%;">
+                <button type="button" class="btn btn-light btn-lg">Send</button>
+              </fieldset>
+            </form>
+          </div>
+        </div>
+     
+      </div>
+    </div>
+
+
+    <!-- ----------------------------------------------- -->
+
+
+    </div>
+
+    <div class="row">
+      <div class="col-md-12 text-white text-center my-3">
+        <p>&copy; 2023 Your Website. All rights reserved.</p>
+      </div>
+    </div>
+    </div>
+  </footer>
+
+  <!-- Add your JavaScript and other scripts here -->
+  <script src="cityShop.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+    crossorigin="anonymous"></script>
+  <script src="https://use.fontawesome.com/c73437d96d.js"></script>
+</body>
+
+</html>
